@@ -9,5 +9,6 @@ public class Main{
     System.out.println("ouaouuuuuuuu");
     System.out.println("ok");
     System.out.println("kalispera");
+    System.out.println("geia sas");
     }
 }
