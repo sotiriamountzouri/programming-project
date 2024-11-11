@@ -1,24 +1,29 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import org.json.JSONObject;
 
-class City {
+class Πόλη {
     String name;
     double latitude;
     double longitude;
 
-    public City(String name, double latitude, double longitude) {
+    public Πόλη(String name, double latitude, double longitude) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 }
 
-class Route {
-    List<City> cities;
+class Διαδρομή {
+    List<Πόλη> cities;
     double distance;
 
-    public Route(List<City> cities) {
+    public Διαδρομή(List<Πόλη> cities) {
         this.cities = new ArrayList<>(cities);
         this.distance = calculateDistance();
     }
@@ -31,7 +36,7 @@ class Route {
         return totalDistance;
     }
 
-    private double haversine(City city1, City city2) {
+    private double haversine(Πόλη city1, Πόλη city2) {
         final int R = 6371; // Radius of the Earth in km
         double latDistance = Math.toRadians(city2.latitude - city1.latitude);
         double lonDistance = Math.toRadians(city2.longitude - city1.longitude);
@@ -44,14 +49,14 @@ class Route {
 }
 
 class AntColony {
-    private List<City> cities;
+    private List<Πόλη> cities;
     private int numberOfAnts;
     private double[][] pheromone;
     private double[][] distance;
     private double pheromoneEvaporationRate;
     private double pheromoneDeposit;
 
-    public AntColony(List<City> cities, int numberOfAnts, double pheromoneEvaporationRate, double pheromoneDeposit) {
+    public AntColony(List<Πόλη> cities, int numberOfAnts, double pheromoneEvaporationRate, double pheromoneDeposit) {
         this.cities = cities;
         this.numberOfAnts = numberOfAnts;
         this.pheromoneEvaporationRate = pheromoneEvaporationRate;
@@ -65,7 +70,7 @@ class AntColony {
         for (int i = 0; i < cities.size(); i++) {
             for (int j = 0; j < cities.size(); j++) {
                 if (i != j) {
-                    distance[i][j] = new Route(List.of(cities.get(i), cities.get(j))).distance;
+                    distance[i][j] = new Διαδρομή(List.of(cities.get(i), cities.get(j))).distance;
                 } else {
                     distance[i][j] = 0;
                 }
@@ -73,12 +78,12 @@ class AntColony {
         }
     }
 
-    public Route optimize() {
-        Route bestRoute = null;
+    public Διαδρομή optimize() {
+        Διαδρομή bestRoute = null;
         for (int iteration = 0; iteration < 100; iteration++) {
-            List<Route> antRoutes = new ArrayList<>();
+            List<Διαδρομή> antRoutes = new ArrayList<>();
             for (int ant = 0; ant < numberOfAnts; ant++) {
-                Route route = constructRoute();
+                Διαδρομή route = constructRoute();
                 antRoutes.add(route);
                 if (bestRoute == null || route.distance < bestRoute.distance) {
                     bestRoute = route;
@@ -89,31 +94,30 @@ class AntColony {
         return bestRoute;
     }
 
-    private Route constructRoute() {
-        List<City> visited = new ArrayList<>();
+    private Διαδρομή constructRoute() {
+        List<Πόλη> visited = new ArrayList<>();
         Random rand = new Random();
-        City startCity = cities.get(rand.nextInt(cities.size()));
+        Πόλη startCity = cities.get(rand.nextInt(cities.size()));
         visited.add(startCity);
         while (visited.size() < cities.size()) {
-            City nextCity = selectNextCity(visited);
+            Πόλη nextCity = selectNextCity(visited);
             visited.add(nextCity);
         }
         // Return to start city to complete the route
         visited.add(startCity);
-        return new Route(visited);
+        return new Διαδρομή(visited);
     }
 
-    private City selectNextCity(List<City> visited) {
-        // Implement logic to select the next city based on pheromone levels and distance
+    private Πόλη selectNextCity(List<Πόλη> visited) {
         Random rand = new Random();
-        City nextCity;
+        Πόλη nextCity;
         do {
             nextCity = cities.get(rand.nextInt(cities.size()));
         } while (visited.contains(nextCity));
         return nextCity;
     }
 
-    private void updatePheromone(List<Route> antRoutes) {
+    private void updatePheromone(List<Διαδρομή> antRoutes) {
         // Evaporate pheromone
         for (int i = 0; i < pheromone.length; i++) {
             for (int j = 0; j < pheromone[i].length; j++) {
@@ -121,7 +125,7 @@ class AntColony {
             }
         }
         // Deposit pheromone based on routes
-        for (Route route : antRoutes) {
+        for (Διαδρομή route : antRoutes) {
             for (int i = 0; i < route.cities.size() - 1; i++) {
                 int fromIndex = cities.indexOf(route.cities.get(i));
                 int toIndex = cities.indexOf(route.cities.get(i + 1));
@@ -129,24 +133,49 @@ class AntColony {
             }
         }
     }
+
+    public double getWindSpeed(double latitude, double longitude) {
+        // Call the weather API to get wind speed
+        String apiKey = "YOUR_API_KEY"; // Replace with your OpenWeatherMap API key
+        String urlString = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
+        try {
+            URL url = new URL(urlString);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            JSONObject jsonResponse = new JSONObject(response.toString());
+            double windSpeed = jsonResponse.getJSONObject("wind").getDouble("speed"); // Wind speed in m/s
+            return windSpeed;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0.0; // Return 0 if there's an error
+        }
+    }
 }
 
 public class ShipRouteOptimizer {
     public static void main(String[] args) {
-        List<City> cities = new ArrayList<>();
-        cities.add(new City("Port A", 34.0522, -118.2437)); // Starting Point
-        cities.add(new City("Port B", 36.1699, -115.1398)); // Destination 1
-        cities.add(new City("Port C", 40.7128, -74.0060));  // Destination 2
-        cities.add(new City("Port D", 25.7617, -80.1918));  // Destination 3
-        // Add more ports as needed
+        List<Πόλη> cities = new ArrayList<>();
+        cities.add(new Πόλη("Λιμάνι Α", 34.0522, -118.2437)); // Starting Point
+        cities.add(new Πόλη("Λιμάνι Β", 36.1699, -115.1398)); // Destination 1
+        cities.add(new Πόλη("Λιμάνι Γ", 40.7128, -74.0060));  // Destination 2
+        cities.add(new Πόλη("Λιμάνι Δ", 25.7617, -80.1918));  // Destination 3
 
         AntColony antColony = new AntColony(cities, 10, 0.1, 100);
-        Route optimalRoute = antColony.optimize();
+        Διαδρομή optimalRoute = antColony.optimize();
 
-        System.out.println("Optimal Route: ");
-        for (City city : optimalRoute.cities) {
+        System.out.println("Βέλτιστη Διαδρομή: ");
+        for (Πόλη city : optimalRoute.cities) {
             System.out.println(city.name);
+            double windSpeed = antColony.getWindSpeed(city.latitude, city.longitude);
+            System.out.println("Wind Speed at " + city.name + ": " + windSpeed + " m/s");
         }
-        System.out.println("Total Distance: " + optimalRoute.distance + " km");
+        System.out.println("Συνολική Απόσταση: " + optimalRoute.distance + " χλμ");
     }
 }
