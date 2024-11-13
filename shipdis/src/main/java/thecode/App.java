@@ -1,4 +1,4 @@
-package shipdis.src.test.java.thecode;
+package thecode;
 
 public class App 
 {
