@@ -1,9 +1,5 @@
-package thecode;
+package shipdis.src.test.java.thecode;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )
