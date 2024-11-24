@@ -1,6 +1,4 @@
 package thecode;
-import java.util.ArrayList;
-import java.util.List;
 
 class Port {
     private String island;
