@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CruiseInterface {
+public class CruiseInput {
     private JFrame frame;
     private JTextField startField; // Πεδίο για την αφετηρία
     private JTextField destinationField; // Πεδίο για νέο προορισμό
@@ -15,7 +15,7 @@ public class CruiseInterface {
     private GreekPorts greekPorts; // Για έλεγχο λιμανιών
     private JTextArea resultArea; // Πεδίο για εμφάνιση αποτελέσματος
 
-    public CruiseInterface() {
+    public CruiseInput() {
         greekPorts = new GreekPorts(); // Φόρτωση λιμανιών
         initializeUI();
     }
