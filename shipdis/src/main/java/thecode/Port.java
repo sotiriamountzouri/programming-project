@@ -1,10 +1,10 @@
 package thecode;
 
 class Port {
-    private String island;
-    private String portName;
-    private double latitude;
-    private double longitude;
+    private final String island;
+    private final String portName;
+    private final double latitude;
+    private final double longitude;
 
     public Port(String island, String portName, double latitude, double longitude) {
         this.island = island;
