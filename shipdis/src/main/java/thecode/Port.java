@@ -1,6 +1,6 @@
 package thecode;
 
-class Port {
+public class Port {
     private final String island;
     private final String portName;
     private final double latitude;

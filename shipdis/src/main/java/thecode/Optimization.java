@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Optimization {
-    private final List<Port> ports; 
+    public final List<Port> ports; 
 
     public Optimization(List<Port> ports) {
         this.ports = ports;
