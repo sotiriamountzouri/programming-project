@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Optimization {
-    private List<Port> final ports; 
+    private final List<Port> ports; 
 
     public Optimization(List<Port> ports) {
         this.ports = ports;
@@ -16,28 +16,29 @@ public class Optimization {
         return Math.sqrt(latDiff * latDiff + lonDiff * lonDiff);
     }
 
-    public void findOptimalRoute(String startIsland, List<String> destinations) {
+    public List<Port> findOptimalRoute(String startIsland, List<String> destinations) {
         Port currentPort = findPortByIsland(startIsland);
         if (currentPort == null) {
-            System.out.println("Δεν βρέθηκε το λιμάνι εκκίνησης.");
-            return;
+            throw new IllegalArgumentException("Δεν βρέθηκε το λιμάνι εκκίνησης: " + startIsland);
         }
-
+    
         List<Port> destinationPorts = new ArrayList<>();
         for (String island : destinations) {
             Port port = findPortByIsland(island);
             if (port != null) {
                 destinationPorts.add(port);
+            } else {
+                throw new IllegalArgumentException("Δεν βρέθηκε το λιμάνι: " + island);
             }
         }
-
+    
         List<Port> route = new ArrayList<>();
         route.add(currentPort);
+    
         while (!destinationPorts.isEmpty()) {
             Port nearestPort = null;
             double minDistance = Double.MAX_VALUE;
-            
-
+    
             for (Port port : destinationPorts) {
                 double distance = calculateDistance(currentPort, port);
                 if (distance < minDistance) {
@@ -45,18 +46,15 @@ public class Optimization {
                     nearestPort = port;
                 }
             }
-
+    
             route.add(nearestPort);
             destinationPorts.remove(nearestPort);
             currentPort = nearestPort;
         }
-
-        System.out.println("Βέλτιστη διαδρομή:");
-        for (Port port : route) {
-            System.out.println(port.getIsland());
-        }
+    
+        return route;  // Επιστρέφουμε τη λίστα με τα λιμάνια στη διαδρομή
     }
-
+    
     private Port findPortByIsland(String island) {
         for (Port port : ports) {
             if (port.getIsland().equalsIgnoreCase(island)) {

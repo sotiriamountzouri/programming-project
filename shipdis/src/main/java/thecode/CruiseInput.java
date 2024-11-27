@@ -21,7 +21,7 @@ public class CruiseInput {
     private JTextField destinationField; // Πεδίο για νέο προορισμό
     private DefaultListModel<String> destinationListModel; // Λίστα για τους προορισμούς
     private JList<String> destinationList; // Γραφική αναπαράσταση της λίστας
-    private GreekPorts greekPorts; // Για έλεγχο λιμανιών
+    private final GreekPorts greekPorts; // Για έλεγχο λιμανιών
     private JTextArea resultArea; // Πεδίο για εμφάνιση αποτελέσματος
 
     public CruiseInput() {

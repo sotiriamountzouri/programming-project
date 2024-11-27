@@ -1,11 +1,12 @@
 package thecode;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 public class AddDestinationListener implements ActionListener {
-    private CruiseInput cruiseInput;
+    private final CruiseInput cruiseInput;
 
     public AddDestinationListener(CruiseInput cruiseInput) {
         this.cruiseInput = cruiseInput;

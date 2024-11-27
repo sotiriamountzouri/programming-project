@@ -1,13 +1,14 @@
 package thecode;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class SubmitDataListener implements ActionListener {
-    private CruiseInput cruiseInput;
+    private final CruiseInput cruiseInput;
 
     public SubmitDataListener(CruiseInput cruiseInput) {
         this.cruiseInput = cruiseInput;
@@ -36,10 +37,10 @@ public class SubmitDataListener implements ActionListener {
 
         Optimization optimization = new Optimization(cruiseInput.getGreekPorts().getPorts());
         try {
-            List<String> optimalRoute = optimization.findOptimalRoute(start, destinations);
+            List<Port> optimalRoute = optimization.findOptimalRoute(start, destinations);
             StringBuilder result = new StringBuilder("Βέλτιστη Διαδρομή:\n");
-            for (String island : optimalRoute) {
-                result.append(island).append(" -> ");
+            for (Port port : optimalRoute) {
+             result.append(port.getIsland()).append(" -> ");
             }
             result.delete(result.length() - 4, result.length());
             cruiseInput.getResultArea().setText(result.toString());

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GreekPorts {
-    private List<Port> ports;
+    private final List<Port> ports;
 
     public GreekPorts() {
         ports = new ArrayList<>();
