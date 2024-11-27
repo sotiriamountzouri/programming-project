@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Optimization {
-    private List<Port> ports; 
+    private List<Port> final ports; 
 
     public Optimization(List<Port> ports) {
         this.ports = ports;
@@ -36,6 +36,7 @@ public class Optimization {
         while (!destinationPorts.isEmpty()) {
             Port nearestPort = null;
             double minDistance = Double.MAX_VALUE;
+            
 
             for (Port port : destinationPorts) {
                 double distance = calculateDistance(currentPort, port);

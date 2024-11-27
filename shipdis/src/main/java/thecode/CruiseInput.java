@@ -1,10 +1,19 @@
 //write Interface code here!
 package thecode;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class CruiseInput {
     private JFrame frame;
@@ -81,6 +90,10 @@ public class CruiseInput {
 
     public DefaultListModel<String> getDestinationListModel() {
         return destinationListModel;
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 
     public JList<String> getDestinationList() {
