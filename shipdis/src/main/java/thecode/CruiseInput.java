@@ -33,9 +33,8 @@ public class CruiseInput {
         // Δημιουργία του βασικού πλαισίου
         frame = new JFrame("Εισαγωγή Δεδομένων Κρουαζιέρας");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 600);
+        frame.setSize(500,400);
         frame.setLayout(new BorderLayout());
-
         // Πάνω μέρος - Εισαγωγή αφετηρίας
         JPanel startPanel = new JPanel(new FlowLayout());
         startPanel.add(new JLabel("Αφετηρία:"));
@@ -64,7 +63,7 @@ public class CruiseInput {
         clearButton.addActionListener(new ClearListListener(this)); // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
         destinationPanel.add(clearButton);
 
-        frame.add(destinationPanel, BorderLayout.SOUTH);
+        frame.add(destinationPanel, BorderLayout.CENTER);
 
         // Πεδίο για εμφάνιση αποτελέσματος
         resultArea = new JTextArea(5, 40);
