@@ -2,6 +2,7 @@
 package thecode;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
@@ -67,11 +68,11 @@ public class CruiseInput {
         scrollPane.setBorder(BorderFactory.createTitledBorder("Προορισμοί"));
         frame.add(scrollPane, BorderLayout.CENTER);
 
-        // Πεδίο για εμφάνιση αποτελέσματος
-        resultArea = new JTextArea(5, 40);
-        resultArea.setEditable(false);
-        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-
+        resultArea = new JTextArea();
+        resultArea.setEditable(false); // Μην επιτρέπει επεξεργασία
+        JScrollPane resultScrollPane = new JScrollPane(resultArea);
+        resultScrollPane.setPreferredSize(new Dimension(450, 200)); // Ρύθμιση διαστάσεων
+        frame.add(resultScrollPane, BorderLayout.CENTER);
         // Κουμπί "Υποβολή" για μελλοντική επέκταση
         JButton submitButton = new JButton("Υποβολή Δεδομένων");
         submitButton.addActionListener(new SubmitDataListener(this)); // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
