@@ -37,15 +37,28 @@ public class SubmitDataListener implements ActionListener {
 
         Optimization optimization = new Optimization(cruiseInput.getGreekPorts().getPorts());
         try {
-            List<Port> optimalRoute = optimization.findOptimalRoute(start, destinations);
-            StringBuilder result = new StringBuilder("Βέλτιστη Διαδρομή:\n");
-            for (Port port : optimalRoute) {
-             result.append(port.getIsland()).append(" -> ");
+            
+                List<Port> optimalRoute = optimization.findOptimalRoute(start, destinations);
+                StringBuilder result = new StringBuilder("Βέλτιστη Διαδρομή:\n");
+                for (Port port : optimalRoute) {
+                    result.append(port.getIsland()).append(" -> ");
+                }
+                result.delete(result.length() - 4, result.length());
+                
+                // Ενημέρωση του resultArea
+                if (cruiseInput.getResultArea() != null) {
+                    cruiseInput.getResultArea().setText(result.toString());
+                } else {
+                    System.out.println("Το resultArea είναι null.");
+                }
+                
+                // Ενημέρωση του χρήστη για την επιτυχία
+                JOptionPane.showMessageDialog(cruiseInput.getFrame(), "Η βέλτιστη διαδρομή υπολογίστηκε!", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(cruiseInput.getFrame(), "Σφάλμα: " + ex.getMessage(), "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+                cruiseInput.getResultArea().setText("Σφάλμα: " + ex.getMessage());
             }
-            result.delete(result.length() - 4, result.length());
-            cruiseInput.getResultArea().setText(result.toString());
-        } catch (IllegalArgumentException ex) {
-            cruiseInput.getResultArea().setText("Σφάλμα: " + ex.getMessage());
-        }
+        
+        
     }
 }

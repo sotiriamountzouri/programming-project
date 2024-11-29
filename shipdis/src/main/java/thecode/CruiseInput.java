@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,13 +35,30 @@ public class CruiseInput {
         frame = new JFrame("Εισαγωγή Δεδομένων Κρουαζιέρας");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500,400);
-        frame.setLayout(new BorderLayout());
+        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         // Πάνω μέρος - Εισαγωγή αφετηρίας
         JPanel startPanel = new JPanel(new FlowLayout());
         startPanel.add(new JLabel("Αφετηρία:"));
         startField = new JTextField(20);
         startPanel.add(startField);
         frame.add(startPanel, BorderLayout.NORTH);
+        frame.add(startPanel);          // Αφετηρία
+        
+          // Κάτω μέρος - Πεδίο για προσθήκη προορισμού και κουμπιά
+        JPanel destinationPanel = new JPanel(new FlowLayout());
+        destinationField = new JTextField(15);
+        destinationPanel.add(new JLabel("Προσθήκη Προορισμού:"));
+        destinationPanel.add(destinationField);
+  
+        JButton addButton = new JButton("Προσθήκη");
+        addButton.addActionListener(new AddDestinationListener(this)); // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
+        destinationPanel.add(addButton);
+  
+        JButton clearButton = new JButton("Καθαρισμός Λίστας");
+        clearButton.addActionListener(new ClearListListener(this)); // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
+        destinationPanel.add(clearButton);
+  
+        frame.add(destinationPanel, BorderLayout.CENTER);
 
         // Κέντρο - Λίστα προορισμών
         destinationListModel = new DefaultListModel<>();
@@ -49,26 +67,10 @@ public class CruiseInput {
         scrollPane.setBorder(BorderFactory.createTitledBorder("Προορισμοί"));
         frame.add(scrollPane, BorderLayout.CENTER);
 
-        // Κάτω μέρος - Πεδίο για προσθήκη προορισμού και κουμπιά
-        JPanel destinationPanel = new JPanel(new FlowLayout());
-        destinationField = new JTextField(15);
-        destinationPanel.add(new JLabel("Προσθήκη Προορισμού:"));
-        destinationPanel.add(destinationField);
-
-        JButton addButton = new JButton("Προσθήκη");
-        addButton.addActionListener(new AddDestinationListener(this)); // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
-        destinationPanel.add(addButton);
-
-        JButton clearButton = new JButton("Καθαρισμός Λίστας");
-        clearButton.addActionListener(new ClearListListener(this)); // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
-        destinationPanel.add(clearButton);
-
-        frame.add(destinationPanel, BorderLayout.CENTER);
-
         // Πεδίο για εμφάνιση αποτελέσματος
         resultArea = new JTextArea(5, 40);
         resultArea.setEditable(false);
-        frame.add(new JScrollPane(resultArea), BorderLayout.AFTER_LAST_LINE);
+        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         // Κουμπί "Υποβολή" για μελλοντική επέκταση
         JButton submitButton = new JButton("Υποβολή Δεδομένων");
