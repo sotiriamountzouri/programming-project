@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 3.2//EN"
+    "https://checkstyle.sourceforge.io/dtds/configuration_3_2.dtd">
+
+<module name="Checker">
+    <module name="TreeWalker">
+        <module name="ClassMemberImpliedModifier"/>
+        <module name="EmptyLineSeparator">
+            <property name="allowNoEmptyLineBeforeMethod" value="false"/>
+        </module>
+
+        <module name="IllegalIdentifierName">
+            <property name="allowKeywords" value="false"/>
+            <property name="allowInitialUnderscore" value="false"/>
+        </module>
+
+        <module name="InnerAssignment">
+            <property name="allow" value="false"/>
+        </module>
+
+        <module name="Indentation">
+            <property name="spaces" value="4"/>
+            <property name="ignoreAnnotations" value="false"/>
+            <property name="lineWrapping" value="false"/>
+        </module>
+
+        <module name="LeftCurly">
+            <property name="option" value="sameLine"/>
+            <property name="allowSingleLineIf" value="true"/>
+            <property name="allowSingleLineFor" value="true"/>
+            <property name="allowSingleLineMethod" value="true"/>
+        </module>
+
+        <module name="RightCurly">
+            <property name="option" value="nextLine"/>
+            <property name="allowSingleLineIf" value="false"/>
+            <property name="allowSingleLineFor" value="false"/>
+            <property name="allowSingleLineMethod" value="false"/>
+        </module>
+
+        <module name="LineLength">
+            <property name="max" value="80"/>
+            <property name="allowShortLines" value="true"/>
+        </module>
+
+        <module name="MemberName">
+            <property name="methodName" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <module name="MethodParamPad">
+            <property name="allowPadBeforeRparen" value="false"/>
+            <property name="padAfterLparen" value="false"/>
+            <property name="padBeforeLparen" value="false"/>
+        </module>
+
+        <module name="NoWhitespaceAfter">
+            <property name="tokens" value="SEMICOLON,RPAREN,RBRACE"/>
+        </module>
+
+        <module name="WhitespaceAround">
+            <property name="tokens" value="ASSIGN,PLUS,MINUS,STAR,DIV,EQUAL,NOTEQUAL,LESS,GREATER,LTE,GTE,AND,OR,NOT,COMMA"/>
+        </module>
+    </module>
+</module>
