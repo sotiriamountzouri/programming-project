@@ -1,9 +1,4 @@
-<?xml version="1.0"?>
-<!DOCTYPE module PUBLIC
-    "-//Checkstyle//DTD Checkstyle Configuration 3.2//EN"
-    "https://checkstyle.sourceforge.io/dtds/configuration_3_2.dtd">
-
-
+<?xml version="1.0" encoding="UTF-8"?>
 <module name="Checker">
     <module name="TreeWalker">
         <module name="ClassMemberImpliedModifier"/>
