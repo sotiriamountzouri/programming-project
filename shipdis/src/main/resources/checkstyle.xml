@@ -7,7 +7,7 @@
     <module name="TreeWalker">
         <module name="ClassMemberImpliedModifier"/>
         <module name="EmptyLineSeparator">
-            <property name="allowMultipleEmptyLinesInsideClassMember" 
+            <property name="allowMultipleEmptyLinesInsideClassMembers" 
                 value="false"/>
         </module>
 
@@ -32,22 +32,17 @@
                 LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_FOR"/>
         </module>
 
-        <module name="LineLength">
-            <property name="max" value="80"/>
-            <property name="fileExtensions" value="java,xml"/>
-        </module>
-
         <module name="MemberName">
             <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
             <property name="applyToPrivate" value="true"/>
-            <property name="applyToProtected" value="true">/
+            <property name="applyToProtected" value="true"/>
             <property name="applyToPublic" value="true"/>
         </module>
 
         <module name="MethodParamPad">
             <property name="allowLineBreaks" value="false"/>
             <property name="option" value="nospace"/>
-            <property name="tokens" value="CTOR_DEF, CTOR_CALL, LITERAL_NEW,
+            <property name="tokens" value="CTOR_DEF, LITERAL_NEW,
                  METHOD_CALL, METHOD_DEF "/>
         </module>
 
@@ -68,4 +63,10 @@
                 NOT_EQUAL"/>
         </module>
     </module>
+
+    <module name="LineLength">
+            <property name="max" value="80"/>
+            <property name="fileExtensions" value="java,xml"/>
+    </module>
+
 </module>
