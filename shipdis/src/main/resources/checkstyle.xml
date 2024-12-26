@@ -7,59 +7,65 @@
     <module name="TreeWalker">
         <module name="ClassMemberImpliedModifier"/>
         <module name="EmptyLineSeparator">
-            <property name="allowNoEmptyLineBeforeMethod" value="false"/>
+            <property name="allowMultipleEmptyLinesInsideClassMember" 
+                value="false"/>
         </module>
 
-        <module name="IllegalIdentifierName">
-            <property name="allowKeywords" value="false"/>
-            <property name="allowInitialUnderscore" value="false"/>
-        </module>
-
-        <module name="InnerAssignment">
-            <property name="allow" value="false"/>
-        </module>
+        <module name="IllegalIdentifierName"/>
 
         <module name="Indentation">
-            <property name="spaces" value="4"/>
-            <property name="ignoreAnnotations" value="false"/>
-            <property name="lineWrapping" value="false"/>
+            <property name="braceAdjustment" value="0"/>
+            <property name="basicOffset" value="4"/>
+            <property name="lineWrappingIndentation" value="8"/>
         </module>
 
         <module name="LeftCurly">
-            <property name="option" value="sameLine"/>
-            <property name="allowSingleLineIf" value="true"/>
-            <property name="allowSingleLineFor" value="true"/>
-            <property name="allowSingleLineMethod" value="true"/>
+            <property name="option" value="eol"/>
+            <property name="tokens" value="ANNOTATION_DEF,CLASS_DEF,CTOR_DEF,
+                LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_FOR,
+                LITERAL_TRY, LITERAL_WHILE,METHOD_DEF,LITERAL_CATCH,STATIC_INIT"/>
         </module>
 
         <module name="RightCurly">
-            <property name="option" value="nextLine"/>
-            <property name="allowSingleLineIf" value="false"/>
-            <property name="allowSingleLineFor" value="false"/>
-            <property name="allowSingleLineMethod" value="false"/>
+            <property name="option" value="alone_or_singleline"/>
+            <property name="tokens" value=",CLASS_DEF,CTOR_DEF,METHOD_DEF,
+                LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_FOR"/>
         </module>
 
         <module name="LineLength">
             <property name="max" value="80"/>
-            <property name="allowShortLines" value="true"/>
+            <property name="fileExtensions" value="java,xml"/>
         </module>
 
         <module name="MemberName">
-            <property name="methodName" value="^[a-z][a-zA-Z0-9]*$"/>
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+            <property name="applyToPrivate" value="true"/>
+            <property name="applyToProtected" value="true">/
+            <property name="applyToPublic" value="true"/>
         </module>
 
         <module name="MethodParamPad">
-            <property name="allowPadBeforeRparen" value="false"/>
-            <property name="padAfterLparen" value="false"/>
-            <property name="padBeforeLparen" value="false"/>
+            <property name="allowLineBreaks" value="false"/>
+            <property name="option" value="nospace"/>
+            <property name="tokens" value="CTOR_DEF, CTOR_CALL, LITERAL_NEW,
+                 METHOD_CALL, METHOD_DEF "/>
+        </module>
+
+        <module name="NoWhitespaceBefore">
+            <property name="allowLineBreaks" value="false"/>
+            <property name="tokens" value="COMMA, SEMI, POST_INC, POST_DEC, ELLIPSIS"/>
         </module>
 
         <module name="NoWhitespaceAfter">
-            <property name="tokens" value="SEMICOLON,RPAREN,RBRACE"/>
+            <property name="allowLineBreaks" value="true"/>
+            <property name="tokens" value="AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, DOT "/>
         </module>
 
         <module name="WhitespaceAround">
-            <property name="tokens" value="ASSIGN,PLUS,MINUS,STAR,DIV,EQUAL,NOTEQUAL,LESS,GREATER,LTE,GTE,AND,OR,NOT,COMMA"/>
+            <property name="tokens" value="ASSIGN, LAND, LOR, BXOR, DIV, DIV_ASSIGN,
+                EQUAL, GE, GT, LE, LT, PLUS, PLUS_ASSIGN, MINUS, 
+                MINUS_ASSIGN, MOD, MOD_ASSIGN, STAR, STAR_ASSIGN, 
+                NOT_EQUAL"/>
         </module>
     </module>
 </module>
