@@ -1,4 +1,5 @@
 package thecode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,10 +67,9 @@ public class GreekPorts {
         greekPorts.printAllCoordinates();
     }
 
-   
-     public List<Port> getPorts() {
-     return ports;
-     }
+    public List<Port> getPorts() {
+        return ports;
+    }
 
 }
 

@@ -1,4 +1,5 @@
 //write Interface code here!
+
 package thecode;
 
 import java.awt.BorderLayout;
@@ -19,11 +20,18 @@ import javax.swing.JTextField;
 
 public class CruiseInput {
     private JFrame frame;
+
     private JTextField startField; // Πεδίο για την αφετηρία
+
     private JTextField destinationField; // Πεδίο για νέο προορισμό
-    private DefaultListModel<String> destinationListModel; // Λίστα για τους προορισμούς
+
+    private DefaultListModel<String> 
+        destinationListModel; // Λίστα για τους προορισμούς
+
     private JList<String> destinationList; // Γραφική αναπαράσταση της λίστας
+
     private final GreekPorts greekPorts; // Για έλεγχο λιμανιών
+
     private JTextArea resultArea; // Πεδίο για εμφάνιση αποτελέσματος
 
     public CruiseInput() {
@@ -36,7 +44,8 @@ public class CruiseInput {
         frame = new JFrame("Εισαγωγή Δεδομένων Κρουαζιέρας");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500,400);
-        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+        frame.setLayout(new BoxLayout(frame.getContentPane(),
+            BoxLayout.Y_AXIS));
         // Πάνω μέρος - Εισαγωγή αφετηρίας
         JPanel startPanel = new JPanel(new FlowLayout());
         startPanel.add(new JLabel("Αφετηρία:"));
@@ -52,11 +61,13 @@ public class CruiseInput {
         destinationPanel.add(destinationField);
   
         JButton addButton = new JButton("Προσθήκη");
-        addButton.addActionListener(new AddDestinationListener(this)); // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
+        addButton.addActionListener(new AddDestinationListener(this)); 
+        // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
         destinationPanel.add(addButton);
   
         JButton clearButton = new JButton("Καθαρισμός Λίστας");
-        clearButton.addActionListener(new ClearListListener(this)); // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
+        clearButton.addActionListener(new ClearListListener(this)); 
+        // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
         destinationPanel.add(clearButton);
   
         frame.add(destinationPanel, BorderLayout.CENTER);
@@ -71,11 +82,13 @@ public class CruiseInput {
         resultArea = new JTextArea();
         resultArea.setEditable(false); // Μην επιτρέπει επεξεργασία
         JScrollPane resultScrollPane = new JScrollPane(resultArea);
-        resultScrollPane.setPreferredSize(new Dimension(450, 200)); // Ρύθμιση διαστάσεων
+        resultScrollPane.setPreferredSize(new Dimension(450, 
+            200)); // Ρύθμιση διαστάσεων
         frame.add(resultScrollPane, BorderLayout.CENTER);
         // Κουμπί "Υποβολή" για μελλοντική επέκταση
         JButton submitButton = new JButton("Υποβολή Δεδομένων");
-        submitButton.addActionListener(new SubmitDataListener(this)); // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
+        submitButton.addActionListener(new SubmitDataListener(this));
+        // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
         frame.add(submitButton, BorderLayout.PAGE_END);
 
         frame.setVisible(true);
@@ -112,7 +125,8 @@ public class CruiseInput {
 
     // Έλεγχος εγκυρότητας λιμανιού
     public boolean isValidPort(String portName) {
-        return greekPorts.getPorts().stream().anyMatch(port -> port.getIsland().equalsIgnoreCase(portName));
+        return greekPorts.getPorts().stream().
+            anyMatch(port -> port.getIsland().equalsIgnoreCase(portName));
     }
 
     // Εκκίνηση της εφαρμογής

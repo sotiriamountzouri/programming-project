@@ -35,13 +35,15 @@ public class Optimization {
     }
 
     /**
-     * Finds the nearest port to the current port from a list of destination ports.
+     * Finds the nearest port to the current port 
+     * from a list of destination ports.
      *
      * @param currentPort      Current port
      * @param destinationPorts List of destination ports
      * @return The nearest port
      */
-    private Port findNearestPort(Port currentPort, List<Port> destinationPorts) {
+    private Port findNearestPort(Port currentPort, 
+        List<Port> destinationPorts) {
         Port nearestPort = null;
         double minDistance = Double.MAX_VALUE;
 
@@ -57,17 +59,20 @@ public class Optimization {
     }
 
     /**
-     * Finds the optimal route starting from a given island to a list of destination islands.
+     * Finds the optimal route starting from a given 
+     * island to a list of destination islands.
      *
      * @param startIsland   The starting island
      * @param destinations  List of destination islands
      * @return A list of ports representing the optimal route
      * @throws IllegalArgumentException if a port is not found
      */
-    public List<Port> findOptimalRoute(String startIsland, List<String> destinations) {
+    public List<Port> findOptimalRoute(String startIsland,
+        List<String> destinations) {
         Port currentPort = findPortByIsland(startIsland);
         if (currentPort == null) {
-            throw new IllegalArgumentException("Starting port not found: " + startIsland);
+            throw new IllegalArgumentException("Starting port not found: " 
+            + startIsland);
         }
 
         List<Port> destinationPorts = new ArrayList<>();
@@ -76,7 +81,8 @@ public class Optimization {
             if (port != null) {
                 destinationPorts.add(port);
             } else {
-                throw new IllegalArgumentException("Destination port not found: " + island);
+                throw new IllegalArgumentException(
+                    "Destination port not found: " + island);
             }
         }
 

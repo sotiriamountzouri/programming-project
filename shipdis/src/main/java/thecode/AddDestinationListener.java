@@ -16,15 +16,21 @@ public class AddDestinationListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String destination = cruiseInput.getDestinationField().getText().trim();
         if (destination.isEmpty()) {
-            JOptionPane.showMessageDialog(cruiseInput.getFrame(), "Το πεδίο προορισμού είναι κενό!", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(cruiseInput.getFrame(), 
+                "Το πεδίο προορισμού είναι κενό!", "Σφάλμα",
+                JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (!cruiseInput.isValidPort(destination)) {
-            JOptionPane.showMessageDialog(cruiseInput.getFrame(), "Το λιμάνι \"" + destination + "\" δεν είναι έγκυρο.", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(cruiseInput.getFrame(), 
+                "Το λιμάνι \"" + destination + "\" δεν είναι έγκυρο.",
+                "Σφάλμα", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (cruiseInput.getDestinationListModel().contains(destination)) {
-            JOptionPane.showMessageDialog(cruiseInput.getFrame(), "Ο προορισμός \"" + destination + "\" υπάρχει ήδη στη λίστα.", "Σφάλμα", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(cruiseInput.getFrame(),
+                "Ο προορισμός \"" + destination + "\" υπάρχει ήδη στη λίστα.",
+                "Σφάλμα", JOptionPane.WARNING_MESSAGE);
             return;
         }
         cruiseInput.getDestinationListModel().addElement(destination);
