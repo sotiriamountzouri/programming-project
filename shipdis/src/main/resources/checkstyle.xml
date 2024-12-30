@@ -28,8 +28,14 @@
 
         <module name="RightCurly">
             <property name="option" value="alone"/>
-            <property name="tokens" value=",CLASS_DEF,CTOR_DEF,METHOD_DEF,
+            <property name="tokens" value="CLASS_DEF,CTOR_DEF,METHOD_DEF,
                 LITERAL_DO,LITERAL_FOR,LITERAL_IF,LITERAL_FOR"/>
+        </module>
+
+        <module name="RightCurly">
+            <property name="option" value="same"/>
+            <property name="tokens" value="LITERAL_ELSE,LITERAL_CATCH,
+                LITERAL_FINALLY"/>
         </module>
 
         <module name="MemberName">
