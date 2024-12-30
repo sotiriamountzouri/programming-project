@@ -29,7 +29,7 @@
         <module name="RightCurly">
             <property name="option" value="alone"/>
             <property name="tokens" value="CLASS_DEF,CTOR_DEF,METHOD_DEF,
-                LITERAL_DO,LITERAL_FOR,LITERAL_IF,LITERAL_FOR"/>
+                LITERAL_DO,LITERAL_FOR"/>
         </module>
 
         <module name="RightCurly">
