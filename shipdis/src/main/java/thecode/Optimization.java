@@ -105,7 +105,7 @@ public class Optimization {
      * @param island The name of the island
      * @return The corresponding port or null if not found
      */
-    private Port findPortByIsland(String island) {
+    public Port findPortByIsland(String island) {
         for (Port port : ports) {
             if (port.getIsland().equalsIgnoreCase(island)) {
                 return port;
