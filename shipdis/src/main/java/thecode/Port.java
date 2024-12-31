@@ -1,5 +1,9 @@
 package thecode;
 
+/**
+ * Represents a port of an island with a specific name and location/coordinates.
+ */
+
 public class Port {
     private final String island;
 
@@ -17,6 +21,9 @@ public class Port {
         this.longitude = longitude;
     }
 
+/**
+ * Prints all coordinates in a user-friendly format.
+ */    
     public String getCoordinates() {
         return portName + " (" + island + "): " 
             + latitude + "° N, " + longitude + "° E";
@@ -33,5 +40,4 @@ public class Port {
     public String getIsland(){
         return island;
     }
-    
 }
