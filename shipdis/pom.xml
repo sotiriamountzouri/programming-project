@@ -81,6 +81,13 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
+          <configuration>
+        <archive>
+            <manifestEntries>
+             <Main-Class>thecode.CruiseInput</Main-Class> <!-- Αντικαταστήστε με την κύρια κλάση σας -->    
+            </manifestEntries>
+        </archive>
+    </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
@@ -101,25 +108,55 @@
         </plugin>
         <!-- JaCoCo Plugin Configuration -->
         <plugin> 
-          <groupId>org.jacoco</groupId>
-          <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.7</version>
-          <executions> 
-            <execution>
-              <id>prepare-agent</id> 
-              <goals>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.7</version>
+    <executions> 
+        <!-- Prepare the agent during the test phase -->
+        <execution>
+            <id>prepare-agent</id> 
+            <goals>
                 <goal>prepare-agent</goal> 
-              </goals>
-            </execution>
-            <execution> 
-              <id>report</id> 
-              <phase>prepare-package</phase> 
-              <goals> 
+            </goals>
+            <configuration>
+                <dataFile>${project.build.directory}/jacoco.exec</dataFile>
+            </configuration>
+        </execution>
+        
+        <!-- Generate the JaCoCo report during the verify phase -->
+        <execution> 
+            <id>report</id> 
+            <phase>verify</phase> 
+            <goals> 
                 <goal>report</goal> 
-              </goals> 
-            </execution>
-          </executions>
-        </plugin>
+            </goals> 
+        </execution>
+        
+        <!-- Optional: Add a check goal to enforce coverage limits -->
+        <execution>
+            <id>check</id>
+            <phase>verify</phase>
+            <goals>
+                <goal>check</goal>
+            </goals>
+            <configuration>
+                <rules>
+                    <rule>
+                        <element>PACKAGE</element>
+                        <limits>
+                            <limit>
+                                <counter>LINE</counter>
+                                <value>COVEREDRATIO</value>
+                                <minimum>0.80</minimum>
+                            </limit>
+                        </limits>
+                    </rule>
+                </rules>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+
       </plugins>
     </pluginManagement>
                     
@@ -144,7 +181,22 @@
           <failsOnError>true</failsOnError> 
          </configuration>
         </plugin>
-
+        <!-- Προσθήκη exec-maven-plugin για εκτέλεση της εφαρμογής -->
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.1.0</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>java</goal>
+                    </goals>
+                    <configuration>
+                        <mainClass>thecode.CruiseInput</mainClass> <!-- Η κύρια κλάση της εφαρμογής σας -->
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
       </plugins>
   </build>
 </project>
