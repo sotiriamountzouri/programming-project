@@ -16,15 +16,20 @@ public class GreekPortCollection {
 
     private void initializePorts() {
         try {
-            List<String> lines = Files.readAllLines(Paths.get("InitializeGreekPorts.txt"));
+            List<String> lines = Files.readAllLines(
+                Paths.get("InitializeGreekPorts.txt"));
             for (String line : lines) {
                 String [] parts = line.split(",");
                 if (parts.length == 4) {
-                    ports.add(new Port(parts[0], parts[1], Double.parseDouble(parts[2]), Double.parseDouble(parts[3])));
+                    ports.add(new Port(parts[0], parts[1], 
+                        Double.parseDouble(parts[2]), 
+                        Double.parseDouble(parts[3])));
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error while reading InitializeGreekPorts file: " + e.getMessage());
+            System.err.println(
+                "Error while reading InitializeGreekPorts file: " 
+                + e.getMessage());
         }
     }
 
