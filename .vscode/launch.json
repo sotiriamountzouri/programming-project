@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GreekPortCollection",
+            "request": "launch",
+            "mainClass": "thecode.GreekPortCollection",
+            "projectName": "shipdis"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
