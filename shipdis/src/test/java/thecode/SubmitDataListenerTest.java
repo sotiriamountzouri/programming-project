@@ -59,9 +59,9 @@ public class SubmitDataListenerTest {
             }
 
             @Override
-            public GreekPorts getGreekPorts() {
+            public GreekPortCollection getGreekPorts() {
                 // Επιστροφή mock αντικειμένου
-                return new GreekPorts();
+                return new GreekPortCollection();
             }
         };
 
