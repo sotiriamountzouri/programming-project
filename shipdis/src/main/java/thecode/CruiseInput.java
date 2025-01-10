@@ -2,9 +2,23 @@
 
 package thecode;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class CruiseInput {
     private JFrame frame;
@@ -18,12 +32,12 @@ public class CruiseInput {
 
     private JList<String> destinationList; // Γραφική αναπαράσταση της λίστας
 
-    private final GreekPorts greekPorts; // Για έλεγχο λιμανιών
+    private final GreekPortCollection greekPorts; // Για έλεγχο λιμανιών
 
     private JTextArea resultArea; // Πεδίο για εμφάνιση αποτελέσματος
 
     public CruiseInput() {
-        greekPorts = new GreekPorts(); // Φόρτωση λιμανιών
+        greekPorts = new GreekPortCollection(); // Φόρτωση λιμανιών
         initializeUI();
     }
 
@@ -175,7 +189,7 @@ public class CruiseInput {
         return destinationList;
     }
 
-    public GreekPorts getGreekPorts() {
+    public GreekPortCollection getGreekPorts() {
         return greekPorts;
     }
 
@@ -185,8 +199,8 @@ public class CruiseInput {
 
     // Έλεγχος εγκυρότητας λιμανιού
     public boolean isValidPort(String portName) {
-        return greekPorts.getPorts().stream().
-            anyMatch(port -> port.getIsland().equalsIgnoreCase(portName));
+        return greekPorts.getPorts().stream().anyMatch(port -> port.getIsland().equalsIgnoreCase(portName));
+
     }
 
     // Εκκίνηση της εφαρμογής

@@ -37,6 +37,7 @@ public class GreekPortCollection {
                 + e.getMessage());
         }
     }
+    
 
     public void printAllPortCoordinates() {
         for (Port port : ports) {
