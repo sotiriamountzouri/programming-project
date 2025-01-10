@@ -32,14 +32,14 @@ public class CruiseInput {
         frame = new JFrame("AquaRoute");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.getContentPane().setBackground(new Color(102, 155, 188)); // Απαλό γαλάζιο
+        frame.getContentPane().setBackground(new Color(102, 155, 188));
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-        Font labelFont = new Font("Arial", Font.BOLD, 16); // Στην ίδια γραμματοσειρά για όλα
+        Font labelFont = new Font("Arial", Font.BOLD, 16);
         Font fieldFont = new Font("Arial", Font.PLAIN, 16);
         Font buttonFont = new Font("Arial", Font.BOLD, 16);
 
-        Color buttonColor = new Color(0, 48, 73); // Σκούρο μπλε #003049
+        Color buttonColor = new Color(0, 48, 73);
         Color textColor = Color.WHITE;
         
         // Πάνω μέρος - Εισαγωγή αφετηρίας
@@ -91,24 +91,69 @@ public class CruiseInput {
         frame.add(destinationPanel);
 
         // Κέντρο - Λίστα προορισμών
+        JPanel listPanel = new JPanel();
+        listPanel.setBackground(new Color(102, 155, 188));
+        listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
+
+        JLabel listTitle = new JLabel("Λίστα Προορισμών:");
+        listTitle.setFont(labelFont);
+        listTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+        listPanel.add(listTitle);
+
         destinationListModel = new DefaultListModel<>();
         destinationList = new JList<>(destinationListModel);
+        destinationList.setFont(fieldFont);
         JScrollPane scrollPane = new JScrollPane(destinationList);
-        scrollPane.setBorder(BorderFactory.createTitledBorder("Προορισμοί"));
-        frame.add(scrollPane, BorderLayout.CENTER);
+        scrollPane.setBorder(BorderFactory.createLineBorder(buttonColor, 2));
+        scrollPane.setPreferredSize(new Dimension(300, 150));
+        listPanel.add(scrollPane);
+
+        frame.add(listPanel);
+        
+        // Πεδίο εμφάνισης αποτελεσμάτων
+        JPanel resultPanel = new JPanel();
+        resultPanel.setBackground(new Color(102, 155, 188));
+        resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.Y_AXIS));
+
+        JLabel resultTitle = new JLabel("Αποτέλεσμα:");
+        resultTitle.setFont(labelFont);
+        resultTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+        resultPanel.add(resultTitle);
 
         resultArea = new JTextArea();
-        resultArea.setEditable(false); // Μην επιτρέπει επεξεργασία
+        resultArea.setEditable(false);
+        resultArea.setFont(new Font("Arial", Font.PLAIN, 16));
+        resultArea.setPreferredSize(new Dimension(300, 150));
+        resultArea.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
         JScrollPane resultScrollPane = new JScrollPane(resultArea);
-        resultScrollPane.setPreferredSize(new Dimension(450, 
-            200)); // Ρύθμιση διαστάσεων
-        frame.add(resultScrollPane, BorderLayout.CENTER);
-        // Κουμπί "Υποβολή" για μελλοντική επέκταση
-        JButton submitButton = new JButton("Υποβολή Δεδομένων");
-        submitButton.addActionListener(new SubmitDataListener(this));
-        // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
-        frame.add(submitButton, BorderLayout.PAGE_END);
+        resultScrollPane.setPreferredSize(new Dimension(300, 150));
+        resultScrollPane.setBorder(BorderFactory.createLineBorder(buttonColor, 2));
+        resultPanel.add(resultScrollPane);
 
+        frame.add(resultPanel);
+
+        // Κουμπί "Υποβολή"
+        JPanel submitPanel = new JPanel();
+        submitPanel.setBackground(new Color(102, 155, 188));
+
+        JButton submitButton = new JButton("Υποβολή Δεδομένων");
+        submitButton.setFont(buttonFont);
+        submitButton.setBackground(buttonColor);
+        submitButton.setForeground(textColor);
+        submitButton.setFocusPainted(false);
+        submitButton.setPreferredSize(new Dimension(200, 50));
+        submitButton.addActionListener(new SubmitDataListener(this));
+        submitPanel.add(submitButton);
+
+        frame.add(submitPanel);
+
+        // Μετακίνηση του κουμπιού "Υποβολή" πιο κάτω
+        submitPanel.setPreferredSize(new Dimension(200, 100));
+        
+        // Κεντράρισμα παραθύρου
+        frame.setLocationRelativeTo(null);
+
+        // Εμφάνιση παραθύρου
         frame.setVisible(true);
     }
 
