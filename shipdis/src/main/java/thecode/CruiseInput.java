@@ -59,21 +59,36 @@ public class CruiseInput {
         
           // Κάτω μέρος - Πεδίο για προσθήκη προορισμού και κουμπιά
         JPanel destinationPanel = new JPanel(new FlowLayout());
+        destinationPanel.setBackground(new Color(102, 155, 188));
+        JLabel destinationLabel = new JLabel("Προσθήκη Προορισμού:");
+        destinationLabel.setFont(labelFont);
+        destinationPanel.add(destinationLabel);
+
         destinationField = new JTextField(15);
-        destinationPanel.add(new JLabel("Προσθήκη Προορισμού:"));
+        destinationField.setFont(fieldFont);
+        destinationField.setPreferredSize(new Dimension(350, 30));
+        destinationField.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
         destinationPanel.add(destinationField);
-  
+
         JButton addButton = new JButton("Προσθήκη");
-        addButton.addActionListener(new AddDestinationListener(this)); 
-        // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
+        addButton.setFont(buttonFont);
+        addButton.setBackground(buttonColor);
+        addButton.setForeground(textColor);
+        addButton.setFocusPainted(false);
+        addButton.setPreferredSize(new Dimension(150, 40));
+        addButton.addActionListener(new AddDestinationListener(this));
         destinationPanel.add(addButton);
-  
+
         JButton clearButton = new JButton("Καθαρισμός Λίστας");
-        clearButton.addActionListener(new ClearListListener(this)); 
-        // Χρησιμοποιούμε το this για να περάσουμε την αναφορά στην κύρια κλάση
+        clearButton.setFont(buttonFont);
+        clearButton.setBackground(buttonColor);
+        clearButton.setForeground(textColor);
+        clearButton.setFocusPainted(false);
+        clearButton.setPreferredSize(new Dimension(180, 40));
+        clearButton.addActionListener(new ClearListListener(this));
         destinationPanel.add(clearButton);
-  
-        frame.add(destinationPanel, BorderLayout.CENTER);
+
+        frame.add(destinationPanel);
 
         // Κέντρο - Λίστα προορισμών
         destinationListModel = new DefaultListModel<>();
