@@ -29,11 +29,19 @@ public class CruiseInput {
 
     private void initializeUI() {
         // Δημιουργία του βασικού πλαισίου
-        frame = new JFrame("Εισαγωγή Δεδομένων Κρουαζιέρας");
+        frame = new JFrame("AquaRoute");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500,400);
-        frame.setLayout(new BoxLayout(frame.getContentPane(),
-            BoxLayout.Y_AXIS));
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.getContentPane().setBackground(new Color(102, 155, 188)); // Απαλό γαλάζιο
+        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+
+        Font labelFont = new Font("Arial", Font.BOLD, 16); // Στην ίδια γραμματοσειρά για όλα
+        Font fieldFont = new Font("Arial", Font.PLAIN, 16);
+        Font buttonFont = new Font("Arial", Font.BOLD, 16);
+
+        Color buttonColor = new Color(0, 48, 73); // Σκούρο μπλε #003049
+        Color textColor = Color.WHITE;
+        
         // Πάνω μέρος - Εισαγωγή αφετηρίας
         JPanel startPanel = new JPanel(new FlowLayout());
         startPanel.add(new JLabel("Αφετηρία:"));
