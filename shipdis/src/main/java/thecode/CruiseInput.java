@@ -44,11 +44,18 @@ public class CruiseInput {
         
         // Πάνω μέρος - Εισαγωγή αφετηρίας
         JPanel startPanel = new JPanel(new FlowLayout());
-        startPanel.add(new JLabel("Αφετηρία:"));
+        startPanel.setBackground(new Color(102, 155, 188));
+        JLabel startLabel = new JLabel("Αφετηρία Κρουαζιέρας:");
+        startLabel.setFont(labelFont);
+        startPanel.add(startLabel);
+
         startField = new JTextField(20);
+        startField.setFont(fieldFont);
+        startField.setPreferredSize(new Dimension(350, 30));
+        startField.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
         startPanel.add(startField);
-        frame.add(startPanel, BorderLayout.NORTH);
-        frame.add(startPanel);          // Αφετηρία
+
+        frame.add(startPanel);
         
           // Κάτω μέρος - Πεδίο για προσθήκη προορισμού και κουμπιά
         JPanel destinationPanel = new JPanel(new FlowLayout());
