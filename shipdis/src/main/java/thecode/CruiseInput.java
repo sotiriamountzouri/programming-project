@@ -146,9 +146,6 @@ public class CruiseInput {
         submitPanel.add(submitButton);
 
         frame.add(submitPanel);
-
-        // Μετακίνηση του κουμπιού "Υποβολή" πιο κάτω
-        submitPanel.setPreferredSize(new Dimension(200, 100));
         
         // Κεντράρισμα παραθύρου
         frame.setLocationRelativeTo(null);
