@@ -47,7 +47,8 @@ public class CruiseInput {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.getContentPane().setBackground(new Color(102, 155, 188));
-        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+        frame.setLayout(new BoxLayout(frame.getContentPane(), 
+            BoxLayout.Y_AXIS));
 
         Font labelFont = new Font("Arial", Font.BOLD, 16);
         Font fieldFont = new Font("Arial", Font.PLAIN, 16);
@@ -81,7 +82,8 @@ public class CruiseInput {
         destinationField = new JTextField(15);
         destinationField.setFont(fieldFont);
         destinationField.setPreferredSize(new Dimension(350, 30));
-        destinationField.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        destinationField.setBorder(BorderFactory.createLineBorder(
+            Color.WHITE, 2));
         destinationPanel.add(destinationField);
 
         JButton addButton = new JButton("Προσθήκη");
@@ -141,7 +143,8 @@ public class CruiseInput {
         resultArea.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
         JScrollPane resultScrollPane = new JScrollPane(resultArea);
         resultScrollPane.setPreferredSize(new Dimension(300, 150));
-        resultScrollPane.setBorder(BorderFactory.createLineBorder(buttonColor, 2));
+        resultScrollPane.setBorder(BorderFactory.createLineBorder(
+            buttonColor, 2));
         resultPanel.add(resultScrollPane);
 
         frame.add(resultPanel);
@@ -199,7 +202,8 @@ public class CruiseInput {
 
     // Έλεγχος εγκυρότητας λιμανιού
     public boolean isValidPort(String portName) {
-        return greekPorts.getPorts().stream().anyMatch(port -> port.getIsland().equalsIgnoreCase(portName));
+        return greekPorts.getPorts().stream().anyMatch(port -> 
+            port.getIsland().equalsIgnoreCase(portName));
 
     }
 

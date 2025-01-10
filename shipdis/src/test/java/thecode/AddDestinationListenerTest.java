@@ -8,26 +8,19 @@ import javax.swing.JTextField;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import org.junit.Before;
 import org.junit.Test;
 
 public class AddDestinationListenerTest {
 
-    private CruiseInput cruiseInput;
-    private AddDestinationListener listener;
-    private JTextField destinationField;
-    private DefaultListModel<String> destinationListModel;
-    private JFrame frame;
-
-    @Before
-    public void setUp() {
-        // Δημιουργία πραγματικών αντικειμένων
-        destinationField = new JTextField();
-        destinationListModel = new DefaultListModel<>();
-        frame = new JFrame();
+    @Test
+    public void testActionPerformed_EmptyField_ShowsError() {
+        // Δημιουργία των αντικειμένων μέσα στο τεστ
+        JTextField destinationField = new JTextField();
+        DefaultListModel<String> destinationListModel = new DefaultListModel<>();
+        JFrame frame = new JFrame();
 
         // Δημιουργία CruiseInput με απλοποιημένη υλοποίηση
-        cruiseInput = new CruiseInput() {
+        CruiseInput cruiseInput = new CruiseInput() {
             @Override
             public JTextField getDestinationField() {
                 return destinationField;
@@ -45,40 +38,96 @@ public class AddDestinationListenerTest {
 
             @Override
             public boolean isValidPort(String port) {
-                // Για τις δοκιμές, θα θεωρήσουμε ότι μόνο το "Athens" είναι έγκυρο
                 return "Athens".equalsIgnoreCase(port);
             }
         };
 
-        listener = new AddDestinationListener(cruiseInput);
-    }
+        AddDestinationListener listener = new AddDestinationListener(cruiseInput);
 
-    @Test
-    public void testActionPerformed_EmptyField_ShowsError() {
         // Δοκιμή για κενό πεδίο
         destinationField.setText("");
 
         ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "add");
         listener.actionPerformed(event);
 
-        // Επειδή το JOptionPane δεν είναι εύκολο να ελεγχθεί, δεν κάνουμε verify εδώ.
-        // Αρκεί που η λίστα παραμένει κενή.
+        // Ελέγχουμε ότι η λίστα παραμένει κενή
         assertTrue(destinationListModel.isEmpty());
     }
 
     @Test
     public void testActionPerformed_InvalidPort_ShowsError() {
+        // Δημιουργία των αντικειμένων μέσα στο τεστ
+        JTextField destinationField = new JTextField();
+        DefaultListModel<String> destinationListModel = new DefaultListModel<>();
+        JFrame frame = new JFrame();
+
+        // Δημιουργία CruiseInput με απλοποιημένη υλοποίηση
+        CruiseInput cruiseInput = new CruiseInput() {
+            @Override
+            public JTextField getDestinationField() {
+                return destinationField;
+            }
+
+            @Override
+            public DefaultListModel<String> getDestinationListModel() {
+                return destinationListModel;
+            }
+
+            @Override
+            public JFrame getFrame() {
+                return frame;
+            }
+
+            @Override
+            public boolean isValidPort(String port) {
+                return "Athens".equalsIgnoreCase(port);
+            }
+        };
+
+        AddDestinationListener listener = new AddDestinationListener(cruiseInput);
+
         // Δοκιμή για μη έγκυρο λιμάνι
         destinationField.setText("UnknownPort");
 
         ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "add");
         listener.actionPerformed(event);
 
+        // Ελέγχουμε ότι η λίστα παραμένει κενή
         assertTrue(destinationListModel.isEmpty());
     }
 
     @Test
     public void testActionPerformed_DuplicateDestination_ShowsWarning() {
+        // Δημιουργία των αντικειμένων μέσα στο τεστ
+        JTextField destinationField = new JTextField();
+        DefaultListModel<String> destinationListModel = new DefaultListModel<>();
+        JFrame frame = new JFrame();
+
+        // Δημιουργία CruiseInput με απλοποιημένη υλοποίηση
+        CruiseInput cruiseInput = new CruiseInput() {
+            @Override
+            public JTextField getDestinationField() {
+                return destinationField;
+            }
+
+            @Override
+            public DefaultListModel<String> getDestinationListModel() {
+                return destinationListModel;
+            }
+
+            @Override
+            public JFrame getFrame() {
+                return frame;
+            }
+
+            @Override
+            public boolean isValidPort(String port) {
+                return "Athens".equalsIgnoreCase(port);
+            }
+        };
+
+        AddDestinationListener listener = new AddDestinationListener(cruiseInput);
+
         // Προσθήκη ενός προορισμού
         destinationListModel.addElement("Athens");
 
@@ -94,6 +143,36 @@ public class AddDestinationListenerTest {
 
     @Test
     public void testActionPerformed_ValidDestination_AddsToList() {
+        // Δημιουργία των αντικειμένων μέσα στο τεστ
+        JTextField destinationField = new JTextField();
+        DefaultListModel<String> destinationListModel = new DefaultListModel<>();
+        JFrame frame = new JFrame();
+
+        // Δημιουργία CruiseInput με απλοποιημένη υλοποίηση
+        CruiseInput cruiseInput = new CruiseInput() {
+            @Override
+            public JTextField getDestinationField() {
+                return destinationField;
+            }
+
+            @Override
+            public DefaultListModel<String> getDestinationListModel() {
+                return destinationListModel;
+            }
+
+            @Override
+            public JFrame getFrame() {
+                return frame;
+            }
+
+            @Override
+            public boolean isValidPort(String port) {
+                return "Athens".equalsIgnoreCase(port);
+            }
+        };
+
+        AddDestinationListener listener = new AddDestinationListener(cruiseInput);
+
         // Δοκιμή για έγκυρο προορισμό
         destinationField.setText("Athens");
 

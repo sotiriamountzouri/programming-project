@@ -42,7 +42,8 @@ public class SubmitDataListener implements ActionListener {
             return;
         }
 
-        Optimization optimization = new Optimization(cruiseInput.getGreekPorts().getPorts());
+        Optimization optimization = new Optimization(
+            cruiseInput.getGreekPorts().getPorts());
 
         try {
             

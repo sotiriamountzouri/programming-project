@@ -20,7 +20,8 @@ public class GreekPortCollection {
         try {
             // Διαβάζουμε το αρχείο από το φάκελο resources
             List<String> lines = Files.readAllLines(
-                Paths.get(getClass().getClassLoader().getResource("InitializeGreekPorts.txt").toURI()));
+                Paths.get(getClass().getClassLoader().getResource(
+                    "InitializeGreekPorts.txt").toURI()));
 
             // Διαβάζουμε κάθε γραμμή από το αρχείο
             for (String line : lines) {
