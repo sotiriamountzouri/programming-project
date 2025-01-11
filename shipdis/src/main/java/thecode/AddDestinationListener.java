@@ -78,9 +78,11 @@ public class AddDestinationListener implements ActionListener {
 
     // Μέθοδος για έλεγχο αν το λιμάνι είναι έγκυρο
     private boolean isValidPort(String port) {
-        // Ελέγχουμε με τη μετατροπή του λιμανιού σε πεζά
+        // Μετατροπή του εισερχόμενου port σε πεζά και έλεγχος με τη λίστα
+        String lowerCasePort = port.toLowerCase(); // Μετατροπή του port σε πεζά
         return validPorts.stream()
                 .map(String::toLowerCase) // μετατρέπουμε τα λιμάνια της λίστας σε πεζά
-                .anyMatch(validPort -> validPort.equals(port));
+                .anyMatch(validPort -> validPort.equals(lowerCasePort));
     }
+    
 }

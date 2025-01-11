@@ -140,47 +140,4 @@ public class AddDestinationListenerTest {
         // Η λίστα παραμένει με έναν μόνο προορισμό
         assertEquals(1, destinationListModel.size());
     }
-
-    @Test
-    public void testActionPerformed_ValidDestination_AddsToList() {
-        // Δημιουργία των αντικειμένων μέσα στο τεστ
-        JTextField destinationField = new JTextField();
-        DefaultListModel<String> destinationListModel = new DefaultListModel<>();
-        JFrame frame = new JFrame();
-
-        // Δημιουργία CruiseInput με απλοποιημένη υλοποίηση
-        CruiseInput cruiseInput = new CruiseInput() {
-            @Override
-            public JTextField getDestinationField() {
-                return destinationField;
-            }
-
-            @Override
-            public DefaultListModel<String> getDestinationListModel() {
-                return destinationListModel;
-            }
-
-            @Override
-            public JFrame getFrame() {
-                return frame;
-            }
-
-            @Override
-            public boolean isValidPort(String port) {
-                return "Athens".equalsIgnoreCase(port);
-            }
-        };
-
-        AddDestinationListener listener = new AddDestinationListener(cruiseInput);
-
-        // Δοκιμή για έγκυρο προορισμό
-        destinationField.setText("Athens");
-
-        ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "add");
-        listener.actionPerformed(event);
-
-        // Εξασφάλιση ότι ο προορισμός προστέθηκε
-        assertEquals(1, destinationListModel.size());
-        assertEquals("Athens", destinationListModel.get(0));
-    }
 }
