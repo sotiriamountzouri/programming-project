@@ -202,9 +202,8 @@ public class CruiseInput {
 
     // Έλεγχος εγκυρότητας λιμανιού
     public boolean isValidPort(String portName) {
-    return greekPorts.getPorts().stream().anyMatch(port -> 
-        port.getIsland().equalsIgnoreCase(portName) || 
-        port.getPortName().equalsIgnoreCase(portName));
+        return greekPorts.getPorts().stream().anyMatch(port -> port.getIsland().equalsIgnoreCase(portName));
+
     }
 
     // Εκκίνηση της εφαρμογής
