@@ -38,14 +38,14 @@ public class GreekPortCollectionTest {
     
         // Ελέγχουμε ένα συγκεκριμένο λιμάνι, π.χ., το πρώτο στη λίστα
         Port firstPort = ports.get(0); // Υποθέτουμε ότι το αρχείο περιέχει δεδομένα
-        assertEquals("Άνδρος", firstPort.getIsland());
+        assertEquals("Αίγινα", firstPort.getIsland());
             
         // Ελέγχουμε τις συντεταγμένες και τη μορφή τους
-        String expectedCoordinates = "Γαύριο (Άνδρος): 37.88° N, 24.73° E";  // 2 δεκαδικά ψηφία
+        String expectedCoordinates = "Αίγινα (Αίγινα): 37.7468° N, 23.4252° E";  // 2 δεκαδικά ψηφία
         assertEquals("The coordinates format should match", expectedCoordinates, firstPort.getCoordinates());
         
-        assertEquals(37.8800, firstPort.getLatitude(), 0.0001);
-        assertEquals(24.7300, firstPort.getLongitude(), 0.0001);
+        assertEquals(37.7468, firstPort.getLatitude(), 0.0001);
+        assertEquals(23.4252, firstPort.getLongitude(), 0.0001);
     }
 
     @Test
