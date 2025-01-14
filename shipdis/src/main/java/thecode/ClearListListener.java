@@ -2,6 +2,7 @@ package thecode;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JOptionPane;
 
 public class ClearListListener implements ActionListener {
@@ -15,7 +16,8 @@ public class ClearListListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Εμφανίζουμε ένα μήνυμα επιβεβαίωσης πριν καθαρίσουμε τη λίστα
         int confirm = JOptionPane.showConfirmDialog(
-            cruiseInput.getFrame(), // Εξασφαλίζουμε ότι το cruiseInput συνδέεται με το frame
+            cruiseInput.getFrame(), 
+            // Εξασφαλίζουμε ότι το cruiseInput συνδέεται με το frame
             "Είστε σίγουροι ότι θέλετε να καθαρίσετε τη λίστα προορισμών;",
             "Επιβεβαίωση", 
             JOptionPane.YES_NO_OPTION

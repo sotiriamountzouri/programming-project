@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -40,9 +41,11 @@ public class SubmitDataListener implements ActionListener {
     private List<String> validateDestinations() {
         List<String> destinations = new ArrayList<>();
         for (int i = 0; i < cruiseInput.getDestinationListModel().size(); i++) {
-            String destination = cruiseInput.getDestinationListModel().getElementAt(i);
+            String destination = cruiseInput.
+                getDestinationListModel().getElementAt(i);
             if (!cruiseInput.isValidPort(destination)) {
-                showErrorDialog("Ο προορισμός \"" + destination + "\" δεν είναι έγκυρος.");
+                showErrorDialog("Ο προορισμός \"" + 
+                    destination + "\" δεν είναι έγκυρος.");
                 return null;
             }
             destinations.add(destination);
@@ -54,7 +57,8 @@ public class SubmitDataListener implements ActionListener {
         return destinations;
     }
 
-    private boolean validateField(String text, String emptyMessage, String invalidMessageFormat) {
+    private boolean validateField(String text,
+        String emptyMessage, String invalidMessageFormat) {
         if (text.isEmpty()) {
             showErrorDialog(emptyMessage);
             return false;
@@ -68,16 +72,21 @@ public class SubmitDataListener implements ActionListener {
 
     private void calculateOptimalRoute(List<String> destinations) {
         // Χρησιμοποιούμε τη GreekPortCollection για να πάρουμε τα λιμάνια
-        Optimization optimization = new Optimization(cruiseInput.getGreekPorts().getPorts());
+        Optimization optimization = new Optimization(
+            cruiseInput.getGreekPorts().getPorts());
         try {
             // Υπολογισμός της βέλτιστης διαδρομής
             List<Port> optimalRoute = optimization.findOptimalRoute(
                 cruiseInput.getStartField().getText().trim(), destinations);
 
             // Εμφάνιση αποτελέσματος
-            String result = "Βέλτιστη Διαδρομή:\n" + String.join(" -> ", optimalRoute.stream().map(Port::getIsland).toArray(String[]::new));
+            String result = "Βέλτιστη Διαδρομή:\n" + String.join(
+                " -> ", optimalRoute.stream().map(
+                Port::getIsland).toArray(String[]::new));
             cruiseInput.getResultArea().setText(result);
-            JOptionPane.showMessageDialog(cruiseInput.getFrame(), "Η βέλτιστη διαδρομή υπολογίστηκε!", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(cruiseInput.getFrame(), 
+                "Η βέλτιστη διαδρομή υπολογίστηκε!", 
+                "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalArgumentException ex) {
             handleCalculationError(ex);
         }
@@ -89,6 +98,8 @@ public class SubmitDataListener implements ActionListener {
     }
 
     private void showErrorDialog(String message) {
-        JOptionPane.showMessageDialog(cruiseInput.getFrame(), message, "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(
+            cruiseInput.getFrame(), 
+            message, "Σφάλμα", JOptionPane.ERROR_MESSAGE);
     }
 }
