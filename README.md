@@ -100,7 +100,7 @@ java -jar target/shipdis-0.1.jar
 ## Διάγραμμα UML 
 Εδώ φαίνεται η δομή του προγράμματος και συγκεκριμένα οι κλάσεις και οι μέθοδοι που περιλαμβάνονται
 
-![Αναπαράσταση εικόνας](resources/UMLDIAGR.png)
+![Αναπαράσταση εικόνας](C:\cygwin64\home\sotir\repo\programming-project\shipdis\src\main\resources\UMLDIAGR.png)
 
 
 ---
